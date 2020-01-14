@@ -5,35 +5,6 @@
 // ClientContacts from Bullhorn, and append them to the sheet.
 // 
 
-
-// for setup, visit console.cloud.google.com
-// IAM
-// Create Credentials
-// OAuth2 client id
-// Other
-// (name it)
-// Save
-// Edit
-// Download JSON
-// also enable the spreadsheets API on this project
-
-
-// The downloaded credentials file ought to look like this:
-// {
-//   "installed": {
-//     "client_id": "8675309-b9aa47c7aa3ed0bc03ac569c.apps.googleusercontent.com",
-//     "project_id": "my-project-name",
-//     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-//     "token_uri": "https://www.googleapis.com/oauth2/v3/token",
-//     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-//     "client_secret": "ABCDEFGHIBAADBEEF",
-//     "redirect_uris": [
-//       "urn:ietf:wg:oauth:2.0:oob",
-//       "http://localhost"
-//     ]
-//   }
-// }
-
 const querystring = require('querystring'),
       util        = require('util'),
       bh          = require('./lib/bh.js'),
