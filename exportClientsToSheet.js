@@ -36,7 +36,7 @@
 
 const querystring = require('querystring'),
       util        = require('util'),
-      bh          = require('./bh.js'),
+      bh          = require('./lib/bh.js'),
       fs          = require('fs'),
       sprintf     = require('sprintf-js').sprintf,
       path        = require('path'),
@@ -192,7 +192,7 @@ function doTheThing(projectId) {
       return console.log(e);
     }
     //console.log(`${projectId} is authorized to do its thing.`);
-    const config    = require('./config.json');
+    const config    = require('./bh-config.json');
     const batchSize = 50;
     //config.verbose = true;
 

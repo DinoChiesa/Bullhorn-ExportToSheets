@@ -4,9 +4,9 @@
 
 const querystring = require('querystring'),
       util        = require('util'),
-      bh          = require('./bh.js');
+      bh          = require('./lib/bh.js');
 
-const config      = require('./config.json');
+const config      = require('./bh-config.json');
 
 function oneBatch(batch) {
   console.log(JSON.stringify(batch,null,2));
