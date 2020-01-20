@@ -165,7 +165,7 @@ function doTheThing(projectId) {
     //console.log(`${projectId} is authorized to do its thing.`);
     const config    = require('./bh-config.json');
     const batchSize = 50;
-    //config.verbose = true;
+    config.verbose = false;
 
     createSheet(oAuth2Client)
       .then(({sheetId, update}) => {
