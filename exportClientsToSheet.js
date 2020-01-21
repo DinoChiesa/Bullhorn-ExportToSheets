@@ -167,25 +167,27 @@ function doTheThing(projectId) {
     const batchSize = 50;
     config.verbose = false;
 
-    createSheet(oAuth2Client)
-      .then(({sheetId, update}) => {
-        let updates = []; 
-        const batchCb = batch => {
-          let cells = batch.data.map( x => [ x.name, x.id, x.email || "--", x.clientCorporation.name ]);
-          updates.push(update(cells).then( () => process.stdout.write('.') ));
-        };
-        
-        bh.login(config)
-          .then( session => session.getAll('ClientContact', 'name,id,email,clientCorporation', batchCb) )
-          .then( () => Promise.all(updates))
-          .then( () => {
-            let url = `https://docs.google.com/spreadsheets/d/${sheetId}/edit#gid=0`;
-            console.log(`\n${url}\n`);
-            opn(url, {wait: false});
-          })
-        
-          .catch( e => console.log(e) );
-      })
+    return bh.login(config)
+      .then(session => 
+            createSheet(oAuth2Client)
+            .then(({sheetId, update}) => {
+              let updates = []; 
+              const batchCb = batch => {
+                let cells = batch.data.map( x => [ x.name, x.id, x.email || "--", x.clientCorporation.name ]);
+                updates.push(update(cells).then( () => process.stdout.write('.') ));
+              };
+              
+              
+              return session.getAll('ClientContact', 'name,id,email,clientCorporation', batchCb) 
+                .then( () => Promise.all(updates))
+                .then( () => {
+                  let url = `https://docs.google.com/spreadsheets/d/${sheetId}/edit#gid=0`;
+                  console.log(`\n${url}\n`);
+                  opn(url, {wait: false});
+                })
+              
+                .catch( e => console.log(e) );
+            }));
   };
 }
 
