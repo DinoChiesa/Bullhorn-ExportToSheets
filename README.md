@@ -144,12 +144,16 @@ In more detail:
 
   version=*&access_token={access_token}
   ```
+  
   The result is a JSON body with:
 
-    ```
-    BhRestToken: "aaabbbbccd"
-    ```
-    ...
+  ```
+  {
+    "BhRestToken": "aaabbbbccd",
+    "restUrl":"https://rest30.bullhornstaffing.com/rest-services/{corpcode}/"
+  }
+  ```
+  ...
 
   This `BhRestToken` apparently lasts for 10 minutes.
 
