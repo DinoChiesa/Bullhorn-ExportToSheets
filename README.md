@@ -95,6 +95,7 @@ In more detail:
     expired. That is not possible; the access_token is good for at most
     one call to /login.
 
+    ```
     POST https://auth.bullhornstaffing.com/oauth/token
     Content-Type: application/x-www-form-urlencoded
 
@@ -102,11 +103,12 @@ In more detail:
     refresh_token={refresh_token}&
     client_id={client_id}&
     client_secret={client_secret}
-
+    ```
 
   - case 2: there is no refresh token.
     Get a new access_token. To do this,
 
+    ```
     POST https://auth.bullhornstaffing.com/oauth/authorize
     Content-Type: application/x-www-form-urlencoded
 
@@ -115,11 +117,13 @@ In more detail:
     password={password}&
     action=Login&
     response_type=code
-
+    ```
+    
     The response will be a 302 redirect to http://bullhorn.com.  Do not
     follow the 302. Instead, from the Location header in the response,
     extract the "code" param from the query. Then redeem it for a token:
 
+    ```
     POST https://auth.bullhornstaffing.com/oauth/token
     Content-Type: application/x-www-form-urlencoded
 
@@ -127,23 +131,27 @@ In more detail:
     code={auth_code}&
     client_id={client_id}&
     client_secret={client_secret}
-
+    ```
+    
     The response to that is a JSON body with an access_token.
 
 
 - call to login
 
+  ```
   POST https://rest.bullhornstaffing.com/rest-services/login
   Content-Type: application/x-www-form-urlencoded
 
   version=*&access_token={access_token}
+  ```
+  The result is a JSON body with:
 
-  result is a JSON body with:
+    ```
+    BhRestToken: "aaabbbbccd"
+    ```
+    ...
 
-  BhRestToken: "aaabbbbccd"
-  ...
-
-  This BhRestToken apparently lasts for 10 minutes.
+  This `BhRestToken` apparently lasts for 10 minutes.
 
 
 
